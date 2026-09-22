@@ -4,29 +4,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-export function Labeled({ label, children, className, hint }: { label: string; children: ReactNode; className?: string; hint?: string }) {
+export function Labeled({ label, children, className, hint, htmlFor }: { label: string; children: ReactNode; className?: string; hint?: string; htmlFor?: string }) {
   return <div className={cn("grid gap-2", className)}>
-    <span className="text-sm font-semibold text-foreground">{label}</span>
+    <label htmlFor={htmlFor} className="text-sm font-semibold text-foreground">{label}</label>
     {children}
     {hint ? <span className="text-xs text-muted-foreground">{hint}</span> : null}
   </div>;
 }
 
 export function TextField({ label, value, onChange, placeholder = "", type = "text", className }: { label: string; value: string; onChange: (next: string) => void; placeholder?: string; type?: string; className?: string }) {
-  return <Labeled label={label} className={className ?? ""}>
-    <Input type={type} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)}/>
+  const id = useId();
+  return <Labeled label={label} htmlFor={id} className={className ?? ""}>
+    <Input id={id} type={type} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)}/>
   </Labeled>;
 }
 
 export function NumberField({ label, value, onChange, className }: { label: string; value: number; onChange: (next: number) => void; className?: string }) {
-  return <Labeled label={label} className={className ?? ""}>
-    <Input type="number" value={Number.isFinite(value) ? String(value) : "0"} onChange={(event) => onChange(Number(event.target.value || 0))}/>
+  const id = useId();
+  return <Labeled label={label} htmlFor={id} className={className ?? ""}>
+    <Input id={id} type="number" value={Number.isFinite(value) ? String(value) : "0"} onChange={(event) => onChange(Number(event.target.value || 0))}/>
   </Labeled>;
 }
 
 export function AreaField({ label, value, onChange, placeholder = "", className }: { label: string; value: string; onChange: (next: string) => void; placeholder?: string; className?: string }) {
-  return <Labeled label={label} className={className ?? ""}>
-    <Textarea rows={3} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)}/>
+  const id = useId();
+  return <Labeled label={label} htmlFor={id} className={className ?? ""}>
+    <Textarea id={id} rows={3} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)}/>
   </Labeled>;
 }
 
