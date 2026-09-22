@@ -100,7 +100,7 @@ function Bookings() {
             </div>
             <div className="space-y-1.5">
               <Label>Colour</Label>
-              <Select value={model.colors[0]}>
+              <Select key={model.id} defaultValue={model.colors[0] ?? ""}>
                 <SelectTrigger>
                   <SelectValue placeholder={model.colors[0]} />
                 </SelectTrigger>
