@@ -87,7 +87,7 @@ export function BookingView({ id }: { id: string }) {
           <div><p className="opacity-80">Advance</p><p className="text-lg font-bold">{formatCurrency(booking.advance)}</p></div>
           <div><p className="opacity-80">Stage</p><p className="text-lg font-bold">{status}</p></div>
         </div>
-      </GlassCard>
+      </div>
 
       <Section title="Booking summary" icon={<CircleDollarSign className="size-4"/>}>
         <Row label="Vehicle amount" value={formatCurrency(vehicleTotal)}/>
