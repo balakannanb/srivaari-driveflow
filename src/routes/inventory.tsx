@@ -37,7 +37,7 @@ export const Route = createFileRoute("/inventory")({
       },
     ],
   }),
-  component: Inventory;
+  component: Inventory,
 });
 
 function Inventory() {
