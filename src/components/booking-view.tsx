@@ -78,7 +78,7 @@ export function BookingView({ id }: { id: string }) {
         {customer && <Button variant="ghost" className="mt-3 px-0 text-primary" asChild><Link to="/customers/$id" params={{ id: customer.id }}>Open customer profile</Link></Button>}
       </GlassCard>
 
-      <GlassCard className="border-primary/20 bg-primary p-6 text-primary-foreground">
+      <div className="brand-gradient rounded-xl border border-primary/20 p-6 text-primary-foreground shadow-soft">
         <p className="text-xs font-bold uppercase opacity-80">Expected delivery</p>
         <p className="mt-2 font-display text-3xl font-bold">{requirements.expectedDelivery || "Not set"}</p>
         <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
