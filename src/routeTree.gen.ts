@@ -22,9 +22,9 @@ import { Route as CustomersIndexRouteImport } from './routes/customers.index'
 import { Route as CustomersNewRouteImport } from './routes/customers.new'
 import { Route as DeliveriesIndexRouteImport } from './routes/deliveries.index'
 import { Route as DeliveriesNewRouteImport } from './routes/deliveries.new'
-import { Route as EnquiriesIndexRouteImport } from './routes/enquiries.index'
-import { Route as EnquiriesNewRouteImport } from './routes/enquiries.new'
 import { Route as FinanceIndexRouteImport } from './routes/finance.index'
+import { Route as FollowupsIndexRouteImport } from './routes/followups.index'
+import { Route as FollowupsNewRouteImport } from './routes/followups.new'
 import { Route as InsuranceIndexRouteImport } from './routes/insurance.index'
 import { Route as InsuranceNewRouteImport } from './routes/insurance.new'
 import { Route as InventoryIndexRouteImport } from './routes/inventory.index'
@@ -43,12 +43,12 @@ import { Route as CustomersIdIndexRouteImport } from './routes/customers.$id.ind
 import { Route as CustomersIdEditRouteImport } from './routes/customers.$id.edit'
 import { Route as DeliveriesIdIndexRouteImport } from './routes/deliveries.$id.index'
 import { Route as DeliveriesIdEditRouteImport } from './routes/deliveries.$id.edit'
-import { Route as EnquiriesIdIndexRouteImport } from './routes/enquiries.$id.index'
-import { Route as EnquiriesIdEditRouteImport } from './routes/enquiries.$id.edit'
 import { Route as FinanceApplicationsIndexRouteImport } from './routes/finance.applications.index'
 import { Route as FinanceApplicationsNewRouteImport } from './routes/finance.applications.new'
 import { Route as FinanceRefinanceIndexRouteImport } from './routes/finance.refinance.index'
 import { Route as FinanceRefinanceNewRouteImport } from './routes/finance.refinance.new'
+import { Route as FollowupsIdIndexRouteImport } from './routes/followups.$id.index'
+import { Route as FollowupsIdEditRouteImport } from './routes/followups.$id.edit'
 import { Route as InsuranceIdIndexRouteImport } from './routes/insurance.$id.index'
 import { Route as InsuranceIdEditRouteImport } from './routes/insurance.$id.edit'
 import { Route as InventoryIdIndexRouteImport } from './routes/inventory.$id.index'
@@ -127,19 +127,19 @@ const DeliveriesNewRoute = DeliveriesNewRouteImport.update({
   path: '/deliveries/new',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EnquiriesIndexRoute = EnquiriesIndexRouteImport.update({
-  id: '/enquiries/',
-  path: '/enquiries/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnquiriesNewRoute = EnquiriesNewRouteImport.update({
-  id: '/enquiries/new',
-  path: '/enquiries/new',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FinanceIndexRoute = FinanceIndexRouteImport.update({
   id: '/finance/',
   path: '/finance/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowupsIndexRoute = FollowupsIndexRouteImport.update({
+  id: '/followups/',
+  path: '/followups/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowupsNewRoute = FollowupsNewRouteImport.update({
+  id: '/followups/new',
+  path: '/followups/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsuranceIndexRoute = InsuranceIndexRouteImport.update({
@@ -232,16 +232,6 @@ const DeliveriesIdEditRoute = DeliveriesIdEditRouteImport.update({
   path: '/deliveries/$id/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EnquiriesIdIndexRoute = EnquiriesIdIndexRouteImport.update({
-  id: '/enquiries/$id/',
-  path: '/enquiries/$id/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnquiriesIdEditRoute = EnquiriesIdEditRouteImport.update({
-  id: '/enquiries/$id/edit',
-  path: '/enquiries/$id/edit',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FinanceApplicationsIndexRoute =
   FinanceApplicationsIndexRouteImport.update({
     id: '/finance/applications/',
@@ -261,6 +251,16 @@ const FinanceRefinanceIndexRoute = FinanceRefinanceIndexRouteImport.update({
 const FinanceRefinanceNewRoute = FinanceRefinanceNewRouteImport.update({
   id: '/finance/refinance/new',
   path: '/finance/refinance/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowupsIdIndexRoute = FollowupsIdIndexRouteImport.update({
+  id: '/followups/$id/',
+  path: '/followups/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowupsIdEditRoute = FollowupsIdEditRouteImport.update({
+  id: '/followups/$id/edit',
+  path: '/followups/$id/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsuranceIdIndexRoute = InsuranceIdIndexRouteImport.update({
@@ -336,7 +336,7 @@ export interface FileRoutesByFullPath {
   '/bookings/new': typeof BookingsNewRoute
   '/customers/new': typeof CustomersNewRoute
   '/deliveries/new': typeof DeliveriesNewRoute
-  '/enquiries/new': typeof EnquiriesNewRoute
+  '/followups/new': typeof FollowupsNewRoute
   '/insurance/new': typeof InsuranceNewRoute
   '/inventory/new': typeof InventoryNewRoute
   '/proforma/new': typeof ProformaNewRoute
@@ -348,8 +348,8 @@ export interface FileRoutesByFullPath {
   '/bookings/': typeof BookingsIndexRoute
   '/customers/': typeof CustomersIndexRoute
   '/deliveries/': typeof DeliveriesIndexRoute
-  '/enquiries/': typeof EnquiriesIndexRoute
   '/finance/': typeof FinanceIndexRoute
+  '/followups/': typeof FollowupsIndexRoute
   '/insurance/': typeof InsuranceIndexRoute
   '/inventory/': typeof InventoryIndexRoute
   '/proforma/': typeof ProformaIndexRoute
@@ -358,9 +358,9 @@ export interface FileRoutesByFullPath {
   '/bookings/$id/edit': typeof BookingsIdEditRoute
   '/customers/$id/edit': typeof CustomersIdEditRoute
   '/deliveries/$id/edit': typeof DeliveriesIdEditRoute
-  '/enquiries/$id/edit': typeof EnquiriesIdEditRoute
   '/finance/applications/new': typeof FinanceApplicationsNewRoute
   '/finance/refinance/new': typeof FinanceRefinanceNewRoute
+  '/followups/$id/edit': typeof FollowupsIdEditRoute
   '/insurance/$id/edit': typeof InsuranceIdEditRoute
   '/inventory/$id/edit': typeof InventoryIdEditRoute
   '/proforma/$id/edit': typeof ProformaIdEditRoute
@@ -368,9 +368,9 @@ export interface FileRoutesByFullPath {
   '/bookings/$id/': typeof BookingsIdIndexRoute
   '/customers/$id/': typeof CustomersIdIndexRoute
   '/deliveries/$id/': typeof DeliveriesIdIndexRoute
-  '/enquiries/$id/': typeof EnquiriesIdIndexRoute
   '/finance/applications/': typeof FinanceApplicationsIndexRoute
   '/finance/refinance/': typeof FinanceRefinanceIndexRoute
+  '/followups/$id/': typeof FollowupsIdIndexRoute
   '/insurance/$id/': typeof InsuranceIdIndexRoute
   '/inventory/$id/': typeof InventoryIdIndexRoute
   '/proforma/$id/': typeof ProformaIdIndexRoute
@@ -390,7 +390,7 @@ export interface FileRoutesByTo {
   '/bookings/new': typeof BookingsNewRoute
   '/customers/new': typeof CustomersNewRoute
   '/deliveries/new': typeof DeliveriesNewRoute
-  '/enquiries/new': typeof EnquiriesNewRoute
+  '/followups/new': typeof FollowupsNewRoute
   '/insurance/new': typeof InsuranceNewRoute
   '/inventory/new': typeof InventoryNewRoute
   '/proforma/new': typeof ProformaNewRoute
@@ -402,8 +402,8 @@ export interface FileRoutesByTo {
   '/bookings': typeof BookingsIndexRoute
   '/customers': typeof CustomersIndexRoute
   '/deliveries': typeof DeliveriesIndexRoute
-  '/enquiries': typeof EnquiriesIndexRoute
   '/finance': typeof FinanceIndexRoute
+  '/followups': typeof FollowupsIndexRoute
   '/insurance': typeof InsuranceIndexRoute
   '/inventory': typeof InventoryIndexRoute
   '/proforma': typeof ProformaIndexRoute
@@ -412,9 +412,9 @@ export interface FileRoutesByTo {
   '/bookings/$id/edit': typeof BookingsIdEditRoute
   '/customers/$id/edit': typeof CustomersIdEditRoute
   '/deliveries/$id/edit': typeof DeliveriesIdEditRoute
-  '/enquiries/$id/edit': typeof EnquiriesIdEditRoute
   '/finance/applications/new': typeof FinanceApplicationsNewRoute
   '/finance/refinance/new': typeof FinanceRefinanceNewRoute
+  '/followups/$id/edit': typeof FollowupsIdEditRoute
   '/insurance/$id/edit': typeof InsuranceIdEditRoute
   '/inventory/$id/edit': typeof InventoryIdEditRoute
   '/proforma/$id/edit': typeof ProformaIdEditRoute
@@ -422,9 +422,9 @@ export interface FileRoutesByTo {
   '/bookings/$id': typeof BookingsIdIndexRoute
   '/customers/$id': typeof CustomersIdIndexRoute
   '/deliveries/$id': typeof DeliveriesIdIndexRoute
-  '/enquiries/$id': typeof EnquiriesIdIndexRoute
   '/finance/applications': typeof FinanceApplicationsIndexRoute
   '/finance/refinance': typeof FinanceRefinanceIndexRoute
+  '/followups/$id': typeof FollowupsIdIndexRoute
   '/insurance/$id': typeof InsuranceIdIndexRoute
   '/inventory/$id': typeof InventoryIdIndexRoute
   '/proforma/$id': typeof ProformaIdIndexRoute
@@ -445,7 +445,7 @@ export interface FileRoutesById {
   '/bookings/new': typeof BookingsNewRoute
   '/customers/new': typeof CustomersNewRoute
   '/deliveries/new': typeof DeliveriesNewRoute
-  '/enquiries/new': typeof EnquiriesNewRoute
+  '/followups/new': typeof FollowupsNewRoute
   '/insurance/new': typeof InsuranceNewRoute
   '/inventory/new': typeof InventoryNewRoute
   '/proforma/new': typeof ProformaNewRoute
@@ -457,8 +457,8 @@ export interface FileRoutesById {
   '/bookings/': typeof BookingsIndexRoute
   '/customers/': typeof CustomersIndexRoute
   '/deliveries/': typeof DeliveriesIndexRoute
-  '/enquiries/': typeof EnquiriesIndexRoute
   '/finance/': typeof FinanceIndexRoute
+  '/followups/': typeof FollowupsIndexRoute
   '/insurance/': typeof InsuranceIndexRoute
   '/inventory/': typeof InventoryIndexRoute
   '/proforma/': typeof ProformaIndexRoute
@@ -467,9 +467,9 @@ export interface FileRoutesById {
   '/bookings/$id/edit': typeof BookingsIdEditRoute
   '/customers/$id/edit': typeof CustomersIdEditRoute
   '/deliveries/$id/edit': typeof DeliveriesIdEditRoute
-  '/enquiries/$id/edit': typeof EnquiriesIdEditRoute
   '/finance/applications/new': typeof FinanceApplicationsNewRoute
   '/finance/refinance/new': typeof FinanceRefinanceNewRoute
+  '/followups/$id/edit': typeof FollowupsIdEditRoute
   '/insurance/$id/edit': typeof InsuranceIdEditRoute
   '/inventory/$id/edit': typeof InventoryIdEditRoute
   '/proforma/$id/edit': typeof ProformaIdEditRoute
@@ -477,9 +477,9 @@ export interface FileRoutesById {
   '/bookings/$id/': typeof BookingsIdIndexRoute
   '/customers/$id/': typeof CustomersIdIndexRoute
   '/deliveries/$id/': typeof DeliveriesIdIndexRoute
-  '/enquiries/$id/': typeof EnquiriesIdIndexRoute
   '/finance/applications/': typeof FinanceApplicationsIndexRoute
   '/finance/refinance/': typeof FinanceRefinanceIndexRoute
+  '/followups/$id/': typeof FollowupsIdIndexRoute
   '/insurance/$id/': typeof InsuranceIdIndexRoute
   '/inventory/$id/': typeof InventoryIdIndexRoute
   '/proforma/$id/': typeof ProformaIdIndexRoute
@@ -501,7 +501,7 @@ export interface FileRouteTypes {
     | '/bookings/new'
     | '/customers/new'
     | '/deliveries/new'
-    | '/enquiries/new'
+    | '/followups/new'
     | '/insurance/new'
     | '/inventory/new'
     | '/proforma/new'
@@ -513,8 +513,8 @@ export interface FileRouteTypes {
     | '/bookings/'
     | '/customers/'
     | '/deliveries/'
-    | '/enquiries/'
     | '/finance/'
+    | '/followups/'
     | '/insurance/'
     | '/inventory/'
     | '/proforma/'
@@ -523,9 +523,9 @@ export interface FileRouteTypes {
     | '/bookings/$id/edit'
     | '/customers/$id/edit'
     | '/deliveries/$id/edit'
-    | '/enquiries/$id/edit'
     | '/finance/applications/new'
     | '/finance/refinance/new'
+    | '/followups/$id/edit'
     | '/insurance/$id/edit'
     | '/inventory/$id/edit'
     | '/proforma/$id/edit'
@@ -533,9 +533,9 @@ export interface FileRouteTypes {
     | '/bookings/$id/'
     | '/customers/$id/'
     | '/deliveries/$id/'
-    | '/enquiries/$id/'
     | '/finance/applications/'
     | '/finance/refinance/'
+    | '/followups/$id/'
     | '/insurance/$id/'
     | '/inventory/$id/'
     | '/proforma/$id/'
@@ -555,7 +555,7 @@ export interface FileRouteTypes {
     | '/bookings/new'
     | '/customers/new'
     | '/deliveries/new'
-    | '/enquiries/new'
+    | '/followups/new'
     | '/insurance/new'
     | '/inventory/new'
     | '/proforma/new'
@@ -567,8 +567,8 @@ export interface FileRouteTypes {
     | '/bookings'
     | '/customers'
     | '/deliveries'
-    | '/enquiries'
     | '/finance'
+    | '/followups'
     | '/insurance'
     | '/inventory'
     | '/proforma'
@@ -577,9 +577,9 @@ export interface FileRouteTypes {
     | '/bookings/$id/edit'
     | '/customers/$id/edit'
     | '/deliveries/$id/edit'
-    | '/enquiries/$id/edit'
     | '/finance/applications/new'
     | '/finance/refinance/new'
+    | '/followups/$id/edit'
     | '/insurance/$id/edit'
     | '/inventory/$id/edit'
     | '/proforma/$id/edit'
@@ -587,9 +587,9 @@ export interface FileRouteTypes {
     | '/bookings/$id'
     | '/customers/$id'
     | '/deliveries/$id'
-    | '/enquiries/$id'
     | '/finance/applications'
     | '/finance/refinance'
+    | '/followups/$id'
     | '/insurance/$id'
     | '/inventory/$id'
     | '/proforma/$id'
@@ -609,7 +609,7 @@ export interface FileRouteTypes {
     | '/bookings/new'
     | '/customers/new'
     | '/deliveries/new'
-    | '/enquiries/new'
+    | '/followups/new'
     | '/insurance/new'
     | '/inventory/new'
     | '/proforma/new'
@@ -621,8 +621,8 @@ export interface FileRouteTypes {
     | '/bookings/'
     | '/customers/'
     | '/deliveries/'
-    | '/enquiries/'
     | '/finance/'
+    | '/followups/'
     | '/insurance/'
     | '/inventory/'
     | '/proforma/'
@@ -631,9 +631,9 @@ export interface FileRouteTypes {
     | '/bookings/$id/edit'
     | '/customers/$id/edit'
     | '/deliveries/$id/edit'
-    | '/enquiries/$id/edit'
     | '/finance/applications/new'
     | '/finance/refinance/new'
+    | '/followups/$id/edit'
     | '/insurance/$id/edit'
     | '/inventory/$id/edit'
     | '/proforma/$id/edit'
@@ -641,9 +641,9 @@ export interface FileRouteTypes {
     | '/bookings/$id/'
     | '/customers/$id/'
     | '/deliveries/$id/'
-    | '/enquiries/$id/'
     | '/finance/applications/'
     | '/finance/refinance/'
+    | '/followups/$id/'
     | '/insurance/$id/'
     | '/inventory/$id/'
     | '/proforma/$id/'
@@ -664,7 +664,7 @@ export interface RootRouteChildren {
   BookingsNewRoute: typeof BookingsNewRoute
   CustomersNewRoute: typeof CustomersNewRoute
   DeliveriesNewRoute: typeof DeliveriesNewRoute
-  EnquiriesNewRoute: typeof EnquiriesNewRoute
+  FollowupsNewRoute: typeof FollowupsNewRoute
   InsuranceNewRoute: typeof InsuranceNewRoute
   InventoryNewRoute: typeof InventoryNewRoute
   ProformaNewRoute: typeof ProformaNewRoute
@@ -676,8 +676,8 @@ export interface RootRouteChildren {
   BookingsIndexRoute: typeof BookingsIndexRoute
   CustomersIndexRoute: typeof CustomersIndexRoute
   DeliveriesIndexRoute: typeof DeliveriesIndexRoute
-  EnquiriesIndexRoute: typeof EnquiriesIndexRoute
   FinanceIndexRoute: typeof FinanceIndexRoute
+  FollowupsIndexRoute: typeof FollowupsIndexRoute
   InsuranceIndexRoute: typeof InsuranceIndexRoute
   InventoryIndexRoute: typeof InventoryIndexRoute
   ProformaIndexRoute: typeof ProformaIndexRoute
@@ -686,9 +686,9 @@ export interface RootRouteChildren {
   BookingsIdEditRoute: typeof BookingsIdEditRoute
   CustomersIdEditRoute: typeof CustomersIdEditRoute
   DeliveriesIdEditRoute: typeof DeliveriesIdEditRoute
-  EnquiriesIdEditRoute: typeof EnquiriesIdEditRoute
   FinanceApplicationsNewRoute: typeof FinanceApplicationsNewRoute
   FinanceRefinanceNewRoute: typeof FinanceRefinanceNewRoute
+  FollowupsIdEditRoute: typeof FollowupsIdEditRoute
   InsuranceIdEditRoute: typeof InsuranceIdEditRoute
   InventoryIdEditRoute: typeof InventoryIdEditRoute
   ProformaIdEditRoute: typeof ProformaIdEditRoute
@@ -696,9 +696,9 @@ export interface RootRouteChildren {
   BookingsIdIndexRoute: typeof BookingsIdIndexRoute
   CustomersIdIndexRoute: typeof CustomersIdIndexRoute
   DeliveriesIdIndexRoute: typeof DeliveriesIdIndexRoute
-  EnquiriesIdIndexRoute: typeof EnquiriesIdIndexRoute
   FinanceApplicationsIndexRoute: typeof FinanceApplicationsIndexRoute
   FinanceRefinanceIndexRoute: typeof FinanceRefinanceIndexRoute
+  FollowupsIdIndexRoute: typeof FollowupsIdIndexRoute
   InsuranceIdIndexRoute: typeof InsuranceIdIndexRoute
   InventoryIdIndexRoute: typeof InventoryIdIndexRoute
   ProformaIdIndexRoute: typeof ProformaIdIndexRoute
@@ -802,25 +802,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeliveriesNewRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/enquiries/': {
-      id: '/enquiries/'
-      path: '/enquiries'
-      fullPath: '/enquiries/'
-      preLoaderRoute: typeof EnquiriesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/enquiries/new': {
-      id: '/enquiries/new'
-      path: '/enquiries/new'
-      fullPath: '/enquiries/new'
-      preLoaderRoute: typeof EnquiriesNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/finance/': {
       id: '/finance/'
       path: '/finance'
       fullPath: '/finance/'
       preLoaderRoute: typeof FinanceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/followups/': {
+      id: '/followups/'
+      path: '/followups'
+      fullPath: '/followups/'
+      preLoaderRoute: typeof FollowupsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/followups/new': {
+      id: '/followups/new'
+      path: '/followups/new'
+      fullPath: '/followups/new'
+      preLoaderRoute: typeof FollowupsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insurance/': {
@@ -949,20 +949,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeliveriesIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/enquiries/$id/': {
-      id: '/enquiries/$id/'
-      path: '/enquiries/$id'
-      fullPath: '/enquiries/$id/'
-      preLoaderRoute: typeof EnquiriesIdIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/enquiries/$id/edit': {
-      id: '/enquiries/$id/edit'
-      path: '/enquiries/$id/edit'
-      fullPath: '/enquiries/$id/edit'
-      preLoaderRoute: typeof EnquiriesIdEditRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/finance/applications/': {
       id: '/finance/applications/'
       path: '/finance/applications'
@@ -989,6 +975,20 @@ declare module '@tanstack/react-router' {
       path: '/finance/refinance/new'
       fullPath: '/finance/refinance/new'
       preLoaderRoute: typeof FinanceRefinanceNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/followups/$id/': {
+      id: '/followups/$id/'
+      path: '/followups/$id'
+      fullPath: '/followups/$id/'
+      preLoaderRoute: typeof FollowupsIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/followups/$id/edit': {
+      id: '/followups/$id/edit'
+      path: '/followups/$id/edit'
+      fullPath: '/followups/$id/edit'
+      preLoaderRoute: typeof FollowupsIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insurance/$id/': {
@@ -1088,7 +1088,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookingsNewRoute: BookingsNewRoute,
   CustomersNewRoute: CustomersNewRoute,
   DeliveriesNewRoute: DeliveriesNewRoute,
-  EnquiriesNewRoute: EnquiriesNewRoute,
+  FollowupsNewRoute: FollowupsNewRoute,
   InsuranceNewRoute: InsuranceNewRoute,
   InventoryNewRoute: InventoryNewRoute,
   ProformaNewRoute: ProformaNewRoute,
@@ -1100,8 +1100,8 @@ const rootRouteChildren: RootRouteChildren = {
   BookingsIndexRoute: BookingsIndexRoute,
   CustomersIndexRoute: CustomersIndexRoute,
   DeliveriesIndexRoute: DeliveriesIndexRoute,
-  EnquiriesIndexRoute: EnquiriesIndexRoute,
   FinanceIndexRoute: FinanceIndexRoute,
+  FollowupsIndexRoute: FollowupsIndexRoute,
   InsuranceIndexRoute: InsuranceIndexRoute,
   InventoryIndexRoute: InventoryIndexRoute,
   ProformaIndexRoute: ProformaIndexRoute,
@@ -1110,9 +1110,9 @@ const rootRouteChildren: RootRouteChildren = {
   BookingsIdEditRoute: BookingsIdEditRoute,
   CustomersIdEditRoute: CustomersIdEditRoute,
   DeliveriesIdEditRoute: DeliveriesIdEditRoute,
-  EnquiriesIdEditRoute: EnquiriesIdEditRoute,
   FinanceApplicationsNewRoute: FinanceApplicationsNewRoute,
   FinanceRefinanceNewRoute: FinanceRefinanceNewRoute,
+  FollowupsIdEditRoute: FollowupsIdEditRoute,
   InsuranceIdEditRoute: InsuranceIdEditRoute,
   InventoryIdEditRoute: InventoryIdEditRoute,
   ProformaIdEditRoute: ProformaIdEditRoute,
@@ -1120,9 +1120,9 @@ const rootRouteChildren: RootRouteChildren = {
   BookingsIdIndexRoute: BookingsIdIndexRoute,
   CustomersIdIndexRoute: CustomersIdIndexRoute,
   DeliveriesIdIndexRoute: DeliveriesIdIndexRoute,
-  EnquiriesIdIndexRoute: EnquiriesIdIndexRoute,
   FinanceApplicationsIndexRoute: FinanceApplicationsIndexRoute,
   FinanceRefinanceIndexRoute: FinanceRefinanceIndexRoute,
+  FollowupsIdIndexRoute: FollowupsIdIndexRoute,
   InsuranceIdIndexRoute: InsuranceIdIndexRoute,
   InventoryIdIndexRoute: InventoryIdIndexRoute,
   ProformaIdIndexRoute: ProformaIdIndexRoute,

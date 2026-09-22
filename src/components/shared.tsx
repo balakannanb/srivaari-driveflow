@@ -38,7 +38,7 @@ const linkClass = "font-semibold text-primary hover:underline";
 
 function RecordLink({ basePath, id }: { basePath: string; id: string }) {
   if (basePath === "/bookings") return <Link to="/bookings/$id" params={{ id }} className={linkClass}>{id}</Link>;
-  if (basePath === "/enquiries") return <Link to="/enquiries/$id" params={{ id }} className={linkClass}>{id}</Link>;
+  if (basePath === "/followups") return <Link to="/followups/$id" params={{ id }} className={linkClass}>{id}</Link>;
   if (basePath === "/proforma") return <Link to="/proforma/$id" params={{ id }} className={linkClass}>{id}</Link>;
   if (basePath === "/finance/applications") return <Link to="/finance/applications/$id" params={{ id }} className={linkClass}>{id}</Link>;
   if (basePath === "/finance/refinance") return <Link to="/finance/refinance/$id" params={{ id }} className={linkClass}>{id}</Link>;
@@ -52,7 +52,7 @@ export function EditLink({ basePath, id, children, className }: { basePath: stri
   if (basePath === "/bookings") return <Link to="/bookings/$id/edit" params={{ id }} className={className}>{children}</Link>;
   if (basePath === "/customers") return <Link to="/customers/$id/edit" params={{ id }} className={className}>{children}</Link>;
   if (basePath === "/inventory") return <Link to="/inventory/$id/edit" params={{ id }} className={className}>{children}</Link>;
-  if (basePath === "/enquiries") return <Link to="/enquiries/$id/edit" params={{ id }} className={className}>{children}</Link>;
+  if (basePath === "/followups") return <Link to="/followups/$id/edit" params={{ id }} className={className}>{children}</Link>;
   if (basePath === "/proforma") return <Link to="/proforma/$id/edit" params={{ id }} className={className}>{children}</Link>;
   if (basePath === "/finance/applications") return <Link to="/finance/applications/$id/edit" params={{ id }} className={className}>{children}</Link>;
   if (basePath === "/finance/refinance") return <Link to="/finance/refinance/$id/edit" params={{ id }} className={className}>{children}</Link>;
