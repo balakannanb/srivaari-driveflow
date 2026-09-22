@@ -78,7 +78,7 @@ export function DashboardPage() {
       </GlassCard>
       <GlassCard className="p-5">
         <h2 className="font-display text-lg font-bold">Today's actions</h2>
-        <div className="mt-4 space-y-2">{[["Finance applications awaiting action", "Urgent", "/finance"], ["Insurance policies pending", "Today", "/insurance"], ["Registrations pending", "In progress", "/registration"], ["Deliveries scheduled", "On track", "/deliveries"], ["Customer follow-ups due", "Due", "/followups"]].map(([label, badge, to], index) => <Link key={label} to={to} className="flex items-center gap-3 rounded-xl p-3 transition hover:bg-primary-soft"><span className="grid size-9 place-items-center rounded-lg bg-muted text-primary"><Clock3 className="size-4"/></span><span className="min-w-0 flex-1 text-sm font-medium">{label}</span><StatusBadge status={badge} tone={index === 0 ? "danger" : index === 3 ? "success" : "warning"}/></Link>)}</div>
+        <div className="mt-4 space-y-2">{([["Finance applications awaiting action", "Urgent", "/finance"], ["Insurance policies pending", "Today", "/insurance"], ["Registrations pending", "In progress", "/registration"], ["Deliveries scheduled", "On track", "/deliveries"], ["Customer follow-ups due", "Due", "/followups"]] as const).map(([label, badge, to], index) => <Link key={label} to={to} className="flex items-center gap-3 rounded-xl p-3 transition hover:bg-primary-soft"><span className="grid size-9 place-items-center rounded-lg bg-muted text-primary"><Clock3 className="size-4"/></span><span className="min-w-0 flex-1 text-sm font-medium">{label}</span><StatusBadge status={badge} tone={index === 0 ? "danger" : index === 3 ? "success" : "warning"}/></Link>)}</div>
       </GlassCard>
     </div>
   </div>;
