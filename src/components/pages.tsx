@@ -207,7 +207,7 @@ export function DetailPage({ type, id }: { type: keyof typeof moduleConfig; id: 
         </div>
       </div>
       <aside className="space-y-4">
-        <GlassCard className="border-primary/20 bg-primary p-6 text-primary-foreground">
+        <div className="brand-gradient rounded-xl border border-primary/20 p-6 text-primary-foreground shadow-soft">
           <p className="text-xs font-bold uppercase opacity-75">Quotation total</p>
           <h2 className="mt-2 text-3xl font-bold">{formatCurrency(row.amount ?? 0)}</h2>
           <div className="my-5 h-px bg-primary-foreground/20"/>
@@ -219,7 +219,7 @@ export function DetailPage({ type, id }: { type: keyof typeof moduleConfig; id: 
     </div> : <div className="grid gap-5 lg:grid-cols-[1.4fr_0.6fr]">
       <div className="grid gap-5 sm:grid-cols-2">{["Customer", "Vehicle", "Details", "Documents"].map((title, index) => <GlassCard key={title} className="p-5"><div className="flex items-center justify-between"><h2 className="font-display font-bold">{title}</h2><StatusBadge status={index < 2 ? "Completed" : "Processing"}/></div><p className="mt-4 text-sm leading-6 text-muted-foreground">{index === 0 ? row.primary : index === 1 ? row.secondary : index === 2 ? row.detail : "Documents attached to this record."}</p></GlassCard>)}</div>
       <aside className="space-y-4">
-        <GlassCard className="border-primary/20 bg-primary p-6 text-primary-foreground"><p className="text-xs font-bold uppercase opacity-75">Current stage</p><h2 className="mt-2 text-2xl font-bold">{row.status}</h2><div className="my-5 h-px bg-primary-foreground/20"/><p className="text-xs font-bold uppercase opacity-75">Amount</p><p className="mt-2 font-semibold">{row.amount ? formatCurrency(row.amount) : "—"}</p><Button variant="secondary" className="mt-5 w-full" onClick={() => toast.success(`${row.id} updated`)}>Update status</Button></GlassCard>
+        <div className="brand-gradient rounded-xl border border-primary/20 p-6 text-primary-foreground shadow-soft"><p className="text-xs font-bold uppercase opacity-75">Current stage</p><h2 className="mt-2 text-2xl font-bold">{row.status}</h2><div className="my-5 h-px bg-primary-foreground/20"/><p className="text-xs font-bold uppercase opacity-75">Amount</p><p className="mt-2 font-semibold">{row.amount ? formatCurrency(row.amount) : "—"}</p><Button variant="secondary" className="mt-5 w-full" onClick={() => toast.success(`${row.id} updated`)}>Update status</Button></GlassCard>
         <GlassCard className="p-5"><h3 className="font-bold">Activity timeline</h3>{["Record created", "Documents verified", "Record updated", "Awaiting next action"].map((item, index) => <div key={item} className="mt-4 flex gap-3"><span className="mt-1 size-2 rounded-full bg-primary"/><div><p className="text-sm font-medium">{item}</p><p className="text-xs text-muted-foreground">{index + 1} day ago · Priya S</p></div></div>)}</GlassCard>
       </aside>
     </div>}
