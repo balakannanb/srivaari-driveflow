@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountsRouteImport } from './routes/accounts'
+import { Route as BookingsRouteImport } from './routes/bookings'
+import { Route as DeliveriesRouteImport } from './routes/deliveries'
+import { Route as EnquiriesRouteImport } from './routes/enquiries'
+import { Route as FinanceRouteImport } from './routes/finance'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as MastersRouteImport } from './routes/masters'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountsRoute = AccountsRouteImport.update({
+  id: '/accounts',
+  path: '/accounts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveriesRoute = DeliveriesRouteImport.update({
+  id: '/deliveries',
+  path: '/deliveries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnquiriesRoute = EnquiriesRouteImport.update({
+  id: '/enquiries',
+  path: '/enquiries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceRoute = FinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MastersRoute = MastersRouteImport.update({
+  id: '/masters',
+  path: '/masters',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accounts': typeof AccountsRoute
+  '/bookings': typeof BookingsRoute
+  '/deliveries': typeof DeliveriesRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/finance': typeof FinanceRoute
+  '/insurance': typeof InsuranceRoute
+  '/inventory': typeof InventoryRoute
+  '/masters': typeof MastersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accounts': typeof AccountsRoute
+  '/bookings': typeof BookingsRoute
+  '/deliveries': typeof DeliveriesRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/finance': typeof FinanceRoute
+  '/insurance': typeof InsuranceRoute
+  '/inventory': typeof InventoryRoute
+  '/masters': typeof MastersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accounts': typeof AccountsRoute
+  '/bookings': typeof BookingsRoute
+  '/deliveries': typeof DeliveriesRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/finance': typeof FinanceRoute
+  '/insurance': typeof InsuranceRoute
+  '/inventory': typeof InventoryRoute
+  '/masters': typeof MastersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/accounts'
+    | '/bookings'
+    | '/deliveries'
+    | '/enquiries'
+    | '/finance'
+    | '/insurance'
+    | '/inventory'
+    | '/masters'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/accounts'
+    | '/bookings'
+    | '/deliveries'
+    | '/enquiries'
+    | '/finance'
+    | '/insurance'
+    | '/inventory'
+    | '/masters'
+  id:
+    | '__root__'
+    | '/'
+    | '/accounts'
+    | '/bookings'
+    | '/deliveries'
+    | '/enquiries'
+    | '/finance'
+    | '/insurance'
+    | '/inventory'
+    | '/masters'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountsRoute: typeof AccountsRoute
+  BookingsRoute: typeof BookingsRoute
+  DeliveriesRoute: typeof DeliveriesRoute
+  EnquiriesRoute: typeof EnquiriesRoute
+  FinanceRoute: typeof FinanceRoute
+  InsuranceRoute: typeof InsuranceRoute
+  InventoryRoute: typeof InventoryRoute
+  MastersRoute: typeof MastersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/accounts': {
+      id: '/accounts'
+      path: '/accounts'
+      fullPath: '/accounts'
+      preLoaderRoute: typeof AccountsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deliveries': {
+      id: '/deliveries'
+      path: '/deliveries'
+      fullPath: '/deliveries'
+      preLoaderRoute: typeof DeliveriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enquiries': {
+      id: '/enquiries'
+      path: '/enquiries'
+      fullPath: '/enquiries'
+      preLoaderRoute: typeof EnquiriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finance': {
+      id: '/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof FinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/masters': {
+      id: '/masters'
+      path: '/masters'
+      fullPath: '/masters'
+      preLoaderRoute: typeof MastersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountsRoute: AccountsRoute,
+  BookingsRoute: BookingsRoute,
+  DeliveriesRoute: DeliveriesRoute,
+  EnquiriesRoute: EnquiriesRoute,
+  FinanceRoute: FinanceRoute,
+  InsuranceRoute: InsuranceRoute,
+  InventoryRoute: InventoryRoute,
+  MastersRoute: MastersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
