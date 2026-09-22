@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { formatCurrency, toneForStatus, type RecordRow, type Tone } from "@/lib/domain";
+import { formatCurrency, journeySteps, toneForStatus, type RecordRow, type Tone } from "@/lib/domain";
 
 export function PageHeader({ eyebrow, title, description, actions }: { eyebrow?: string; title: string; description: string; actions?: ReactNode }) {
   return <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -30,7 +30,7 @@ export function KpiCard({ label, value, trend, icon }: { label: string; value: s
 }
 
 export function JourneyStepper({ active = 5 }: { active?: number }) {
-  const steps = ["Enquiry", "Proforma", "Booking", "Payment", "Finance", "Insurance", "Registration", "Delivery"];
+  const steps = journeySteps;
   return <div className="overflow-x-auto pb-2"><div className="flex min-w-[780px] items-start">{steps.map((step, index) => <div key={step} className="relative flex flex-1 flex-col items-center text-center"><div className={cn("absolute left-0 top-4 h-0.5 w-full", index === 0 ? "hidden" : index <= active ? "bg-primary" : "bg-border")} /><div className={cn("relative z-10 grid size-8 place-items-center rounded-full border-2 text-xs font-bold", index < active && "border-primary bg-primary text-primary-foreground", index === active && "border-primary bg-background text-primary shadow-glow", index > active && "border-border bg-background text-muted-foreground")}>{index < active ? "✓" : index + 1}</div><span className={cn("mt-2 text-xs font-semibold", index <= active ? "text-foreground" : "text-muted-foreground")}>{step}</span></div>)}</div></div>;
 }
 

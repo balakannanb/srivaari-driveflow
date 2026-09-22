@@ -110,7 +110,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const addLedgerEntry = useCallback<Store["addLedgerEntry"]>((entry) => setLedger((current) => [entry, ...current]), []);
 
   const saveMaster = useCallback<Store["saveMaster"]>((key, record) => {
-    const update = <T extends { id: string }>(current: T[]) => (current.some((entry) => entry.id === record.id) ? current.map((entry) => (entry.id === record.id ? (record as T) : entry)) : [record as T, ...current]);
+    const update = <T extends { id: string }>(current: T[]) => {
+      const next = record as unknown as T;
+      return current.some((entry) => entry.id === record.id) ? current.map((entry) => (entry.id === record.id ? next : entry)) : [next, ...current];
+    };
     if (key === "dealers") setDealers(update);
     if (key === "staff") setStaff(update);
     if (key === "partners") setPartners(update);
