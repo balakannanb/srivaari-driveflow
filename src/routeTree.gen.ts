@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as MastersRouteImport } from './routes/masters'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as AccountsIndexRouteImport } from './routes/accounts.index'
 import { Route as AccountsDailyRouteImport } from './routes/accounts.daily'
@@ -70,6 +71,11 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MastersRoute = MastersRouteImport.update({
+  id: '/masters',
+  path: '/masters',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -329,6 +335,7 @@ const FinanceRefinanceIdEditRoute = FinanceRefinanceIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/masters': typeof MastersRoute
   '/reports': typeof ReportsRoute
   '/accounts/daily': typeof AccountsDailyRoute
   '/accounts/monthly': typeof AccountsMonthlyRoute
@@ -383,6 +390,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/masters': typeof MastersRoute
   '/reports': typeof ReportsRoute
   '/accounts/daily': typeof AccountsDailyRoute
   '/accounts/monthly': typeof AccountsMonthlyRoute
@@ -438,6 +446,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/masters': typeof MastersRoute
   '/reports': typeof ReportsRoute
   '/accounts/daily': typeof AccountsDailyRoute
   '/accounts/monthly': typeof AccountsMonthlyRoute
@@ -494,6 +503,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/masters'
     | '/reports'
     | '/accounts/daily'
     | '/accounts/monthly'
@@ -548,6 +558,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
+    | '/masters'
     | '/reports'
     | '/accounts/daily'
     | '/accounts/monthly'
@@ -602,6 +613,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/masters'
     | '/reports'
     | '/accounts/daily'
     | '/accounts/monthly'
@@ -657,6 +669,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  MastersRoute: typeof MastersRoute
   ReportsRoute: typeof ReportsRoute
   AccountsDailyRoute: typeof AccountsDailyRoute
   AccountsMonthlyRoute: typeof AccountsMonthlyRoute
@@ -723,6 +736,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/masters': {
+      id: '/masters'
+      path: '/masters'
+      fullPath: '/masters'
+      preLoaderRoute: typeof MastersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -1081,6 +1101,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  MastersRoute: MastersRoute,
   ReportsRoute: ReportsRoute,
   AccountsDailyRoute: AccountsDailyRoute,
   AccountsMonthlyRoute: AccountsMonthlyRoute,
